@@ -1,11 +1,8 @@
-package bytechs.testTask.library.model;
+package bytechs.testTask.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,6 +12,7 @@ public class Book {
     private String bookName;
     private Set<Author> authorsList;
     private Library library;
+    private Boolean status;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,5 +52,14 @@ public class Book {
 
     public void setLibrary(Library library) {
         this.library = library;
+    }
+
+    @Column(name = "status", nullable = false, precision = 0)
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

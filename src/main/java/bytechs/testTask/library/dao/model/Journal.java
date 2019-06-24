@@ -1,8 +1,6 @@
-package bytechs.testTask.library.model;
+package bytechs.testTask.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -66,7 +64,7 @@ public class Journal {
     }
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "libraryId", nullable = false)
     public Library getLibrary() {
         return library;

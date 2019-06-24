@@ -1,4 +1,4 @@
-package bytechs.testTask.library.model;
+package bytechs.testTask.library.dao.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Library {
         this.bookList = bookList;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "library")
     public List<User> getUserList() {
         return userList;
     }
@@ -41,7 +41,7 @@ public class Library {
         this.userList = userList;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "library")
     public List<Journal> getJournalList() {
         return journalList;
     }

@@ -1,4 +1,4 @@
-package bytechs.testTask.library.model;
+package bytechs.testTask.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -1,4 +1,4 @@
-package bytechs.testTask.library.configJPA;
+package bytechs.testTask.library.dao.configJPA;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,7 +6,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -23,7 +22,7 @@ import java.util.Properties;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager",
-        basePackages = {"bytechs.testTask.library.configJPA"})
+        basePackages = {"bytechs.testTask.library.dao.configJPA"})
 public class RepositoryConfig {
     @Autowired
     JpaVendorAdapter jpaVendorAdapter;
@@ -55,7 +54,7 @@ public class RepositoryConfig {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
         emf.setJpaVendorAdapter(jpaVendorAdapter);
-        emf.setPackagesToScan("bytechs.testTask.library.model");
+        emf.setPackagesToScan("bytechs.testTask.library.dao.model");
         emf.setPersistenceUnitName("anotherPersistenceUnit");
         emf.setJpaProperties(properties);
         emf.afterPropertiesSet();

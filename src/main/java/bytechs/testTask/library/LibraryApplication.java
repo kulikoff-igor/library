@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(value = "bytechs.testTask.library.repository")
+@EnableJpaRepositories(value = "bytechs.testTask.library.dao.repository")
 @SpringBootApplication
 public class LibraryApplication {
 

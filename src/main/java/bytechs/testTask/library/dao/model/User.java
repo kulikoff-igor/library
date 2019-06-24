@@ -1,10 +1,9 @@
-package bytechs.testTask.library.model;
+package bytechs.testTask.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -14,6 +13,7 @@ public class User {
     private String password;
     private UserDescription userDescription;
     private Library library;
+    private Set<Role> roles;
 
     public User(int userId, String login, String password, UserDescription userDescription, Library library) {
         this.userId = userId;
@@ -46,6 +46,7 @@ public class User {
         this.login = login;
     }
 
+    @JsonIgnore
     @Column(name = "password", nullable = false, length = 250)
     public String getPassword() {
         return password;
@@ -55,7 +56,7 @@ public class User {
         this.password = password;
     }
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "userDescriptionId", nullable = false)
     public UserDescription getUserDescription() {
         return userDescription;
@@ -66,7 +67,7 @@ public class User {
     }
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "libraryId", nullable = false)
     public Library getLibrary() {
         return library;
@@ -74,5 +75,15 @@ public class User {
 
     public void setLibrary(Library library) {
         this.library = library;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
