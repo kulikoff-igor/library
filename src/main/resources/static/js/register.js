@@ -24,19 +24,19 @@ $(document).ready(function () {
         userDescription.name = $('#name').val();
         userDescription.lastName = $('#lastName').val();
         user.userDescription = userDescription;
-        if ($('#adminRole').checkbox()) {
+        if ($('#adminRole').attr("checked") == 'checked') {
             role[0] = "ADMIN";
         }
-        if ($('#userRole').checkbox()) {
+        if ($('#userRole').attr("checked") == 'checked') {
             role[0] = "USER";
         }
-
+        //console.log(JSON.stringify(user));
         $.ajax({
-            url: "/user/add",
-            type: "Get",
+            url: "/library/api/user/add",
+            type: "POST",
             dataType: "json",
             data: {
-                User: user,
+                User: JSON.stringify(user),
                 roleUser: role
             },
             success: function (data) {
