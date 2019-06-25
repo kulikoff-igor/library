@@ -3,6 +3,7 @@ package bytechs.testTask.library.dao.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Journal")
@@ -10,9 +11,20 @@ public class Journal {
     private int journalId;
     private User user;
     private Book book;
-    private String startDate;
+    private Date startDate;
     private Boolean bookIsBack;
     private Library library;
+
+    public Journal() {
+    }
+
+    public Journal(User user, Book book, Date startDate, Boolean bookIsBack, Library library) {
+        this.user = user;
+        this.book = book;
+        this.startDate = startDate;
+        this.bookIsBack = bookIsBack;
+        this.library = library;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,11 +58,11 @@ public class Journal {
     }
 
     @Column(name = "startDate", nullable = false, length = 100)
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

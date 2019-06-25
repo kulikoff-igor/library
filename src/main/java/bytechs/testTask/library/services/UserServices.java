@@ -5,6 +5,7 @@ import bytechs.testTask.library.dao.model.User;
 import bytechs.testTask.library.dao.model.UserDescription;
 import bytechs.testTask.library.dao.repository.RoleRepository;
 import bytechs.testTask.library.dao.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class UserServices {
             Role userRole = roleRepository.findByRole(role);
             userRoles.add(userRole);
         }
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         user.setRoles(userRoles);
         return userRepository.saveAndFlush(user);
     }
@@ -46,7 +48,7 @@ public class UserServices {
         return userRepository.findByLogin(login);
     }
 
-    public User updateUserDiscription(String login, UserDescription userDescription) {
+    public User updateUserDescription(String login, UserDescription userDescription) {
         User user = rerunUserByLogin(login);
         user.setUserDescription(userDescription);
         return createUser(user);
