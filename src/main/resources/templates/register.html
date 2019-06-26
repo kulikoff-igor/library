@@ -49,27 +49,33 @@
                     <div class="login-form">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input class="au-input au-input--full" type="text" name="Login" id="Login" placeholder="Login">
+                                <input class="au-input au-input--full" type="text" name="Login" roleId="Login" placeholder="Login">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input class="au-input au-input--full" type="password"  id="password" name="password"
+                                <input class="au-input au-input--full" type="password"  roleId="password" name="password"
                                        placeholder="Password">
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="au-input au-input--full" type="text" name="name" id="name" placeholder="name">
+                                <input class="au-input au-input--full" type="text" name="name" roleId="name" placeholder="name">
                             </div>
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="au-input au-input--full" type="text" name="lastName" id="lastName"
+                                <input class="au-input au-input--full" type="text" name="lastName" roleId="lastName"
                                        placeholder="lastName">
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input class="au-input au-input--full" type="text" name="address" id="address" placeholder="address">
+                                <input class="au-input au-input--full" type="text" name="address" roleId="address" placeholder="address">
                             </div>
+                        <div class="form-group">
+                            <label>Library</label>
+                            <select class="form-control-sm form-control" type="text" name="address" roleId="library" placeholder="address">
+                                <option>Городская</option>
+                            </select>
+                        </div>
                             <div class="form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -77,17 +83,17 @@
                                 <div class="col col-md-9">
                                     <div class="form-check-inline form-check">
                                         <label for="adminRole" class="form-check-label ">
-                                            <input type="checkbox" id="adminRole" name="inline-radios" value="option1"
+                                            <input type="checkbox" roleId="adminRole" name="inline-radios" value="option1"
                                                    class="form-check-input">ADMIN
                                         </label>
                                         <label for="userRole" class="form-check-label ">
-                                            <input type="checkbox" id="userRole" name="inline-radios" value="option2"
+                                            <input type="checkbox" roleId="userRole" name="inline-radios" value="option2"
                                                    class="form-check-input">USER
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" id="registerUser">register
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" roleId="registerUser">register
                             </button>
 
 

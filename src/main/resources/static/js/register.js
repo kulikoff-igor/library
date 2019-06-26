@@ -1,47 +1,39 @@
-let user = {
-    userId: null,
-    login: null,
-    password: null,
-    userDescription: null,
-    library: null,
-    roles: null
-};
 
-let userDescription = {
-    name: null,
-    lastName: null,
-    address: null
-};
 let role = [];
 
 $(document).ready(function () {
 
     $('#registerUser').click(function () {
 
-        user.login = $('#Login').val();
-        user.password = $('#password').val();
-        userDescription.address = $('#address').val();
-        userDescription.name = $('#name').val();
-        userDescription.lastName = $('#lastName').val();
-        user.userDescription = userDescription;
-        if ($('#adminRole').attr("checked") == 'checked') {
-            role[0] = "ADMIN";
+
+        if ($('#adminRole').prop( "checked" )) {
+
+            role.push( "ADMIN");
         }
-        if ($('#userRole').attr("checked") == 'checked') {
-            role[0] = "USER";
+        if ($('#userRole').prop( "checked" )) {
+
+            role.push( "USER");
         }
-        //console.log(JSON.stringify(user));
+        //console.log(role.toString());
         $.ajax({
             url: "/library/api/user/add",
             type: "POST",
+            async: false,
             dataType: "json",
             data: {
-                User: JSON.stringify(user),
-                roleUser: role
-            },
+                login: $('#Login').val(),
+                password: $('#password').val(),
+                address: $('#address').val(),
+                name: $('#name').val(),
+                lastName: $('#lastName').val(),
+                library: $('#library').val(),
+                role:role.toString()
+            }
+            ,
             success: function (data) {
                 console.log(data.toString());
             }
         });
+        role = [];
     })
 });

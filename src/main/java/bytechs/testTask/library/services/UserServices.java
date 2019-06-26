@@ -24,17 +24,11 @@ public class UserServices {
     @Qualifier("roleRepository")
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserDescriptionServices userDescriptionServices;
+    @Autowired
+    LibraryServices libraryServices;
 
-    public User createUser(User user, List<String> roles) {
-        HashSet<Role> userRoles = new HashSet<>();
-        for (String role : roles) {
-            Role userRole = roleRepository.findByRole(role);
-            userRoles.add(userRole);
-        }
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        user.setRoles(userRoles);
-        return userRepository.saveAndFlush(user);
-    }
 
     public User createUser(User user) {
         return userRepository.saveAndFlush(user);
@@ -55,4 +49,20 @@ public class UserServices {
     }
 
 
+    public User createUser(String login, String password, String address, String name, String lastName, List<String> roles, String library) {
+        User user = new User();
+        UserDescription userDescription = new UserDescription(name, lastName, address);
+
+        HashSet<Role> userRoles = new HashSet<>();
+        for (String role : roles) {
+            Role userRole = roleRepository.findByRole(role);
+            userRoles.add(userRole);
+        }
+        user.setLogin(login);
+        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+        user.setRoles(userRoles);
+        user.setLibrary(libraryServices.returnLibraryByName(library));
+        user.setUserDescription(userDescriptionServices.createUserDescription(userDescription));
+        return userRepository.saveAndFlush(user);
+    }
 }

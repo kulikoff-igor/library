@@ -10,8 +10,7 @@ public class UserDescription {
     private String lastName;
     private String address;
 
-    public UserDescription(int userDescriptionId, String name, String lastName, String address) {
-        this.userDescriptionId = userDescriptionId;
+    public UserDescription(String name, String lastName, String address) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;

@@ -17,8 +17,10 @@ public class UserController {
 
     @PostMapping(value = "/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User createUser(@RequestParam(value = "User", required = true) User user, @RequestParam(value = "roleUser", required = true) List<String> role) {
-        return userServices.createUser(user, role);
+    public User createUser(@RequestParam(value = "login") String login,@RequestParam(value = "password") String password,@RequestParam(value = "address") String address,@RequestParam(value = "name") String name, @RequestParam(value = "lastName") String lastName,  @RequestParam(value = "role") List<String> role,@RequestParam(value = "library") String library) {
+
+        return userServices.createUser(login,password,address,name,lastName,role,library);
+
     }
 
     @PostMapping(value = "/edit")
